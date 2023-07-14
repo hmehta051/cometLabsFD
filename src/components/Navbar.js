@@ -5,6 +5,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Hamburgur from "./Hamburgur";
 import ProductDropDown from "./ProductDropDown";
+import SearchBox from "./SearchBox";
 
 const Navbar = () => {
   const styles = {
@@ -39,15 +40,20 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    setInputShowMobile(false);
   };
 
   return (
     <>
       <Hamburgur isMenuOpen={isMenuOpen} />
       {productDD || solDD ? <ProductDropDown /> : null}
+      <SearchBox
+        inputShowMobile={inputShowMobile}
+        setInputShowMobile={setInputShowMobile}
+      />
       <nav
-        className={`z-10 max-h-24 h-[100px] flex items-center justify-around fixed top-0 w-full bg-[white] overflow-scroll ${
-          isMenuOpen ? "" : "shadow-lg "
+        className={`z-10 max-h-24 h-[100px] outline-none flex items-center justify-around fixed top-0 w-full bg-[white] overflow-scroll ${
+          isMenuOpen || inputShowMobile ? "" : "shadow-lg"
         }`}
       >
         <div className="container mx-auto px-4 py-2 flex items-center justify-between">
@@ -62,7 +68,7 @@ const Navbar = () => {
                 height={"100%"}
               />
             </div>
-            <div className="hidden md:flex space-x-4">
+            <div className="hidden md:flex gap-x-5">
               <div
                 style={styles.textBlack}
                 onMouseEnter={() => {
@@ -71,14 +77,13 @@ const Navbar = () => {
                 onMouseLeave={() => {
                   setIsHoveredProd(false);
                 }}
-                className="text-black hover:text-[#0033FF] flex items-center"
+                className="text-black hover:text-[#0033FF] flex items-center hover:animate-pulse"
                 onClick={() => {
                   setSolDD(false);
                   setProductDD((p) => !p);
                 }}
               >
                 <span>Products</span>
-
                 {productDD ? <RiArrowDropUpLine /> : <RiArrowDropDownLine />}
                 {isHoveredProd && (
                   <div style={{ ...styles.after, ...styles.afterHover }} />
@@ -90,7 +95,7 @@ const Navbar = () => {
                   setIsHoveredSol(true);
                 }}
                 onMouseLeave={() => setIsHoveredSol(false)}
-                className="text-black hover:text-[#0033FF] flex items-center"
+                className="text-black hover:text-[#0033FF] flex items-center hover:animate-pulse"
                 onClick={() => {
                   setProductDD(false);
                   setSolDD((p) => !p);
@@ -106,7 +111,7 @@ const Navbar = () => {
                 style={styles.textBlack}
                 onMouseEnter={() => setIsHoveredPri(true)}
                 onMouseLeave={() => setIsHoveredPri(false)}
-                className="text-black hover:text-[#0033FF] flex items-center"
+                className="text-black hover:text-[#0033FF] flex items-center hover:animate-pulse"
               >
                 <span>Pricing</span>
 
@@ -118,7 +123,7 @@ const Navbar = () => {
                 style={styles.textBlack}
                 onMouseEnter={() => setIsHoveredLea(true)}
                 onMouseLeave={() => setIsHoveredLea(false)}
-                className="text-black hover:text-[#0033FF] flex items-center"
+                className="text-black hover:text-[#0033FF] flex items-center hover:animate-pulse"
               >
                 <span>Learn</span>
                 <RiArrowDropDownLine />
@@ -130,7 +135,7 @@ const Navbar = () => {
                 style={styles.textBlack}
                 onMouseEnter={() => setIsHoveredCon(true)}
                 onMouseLeave={() => setIsHoveredCon(false)}
-                className="text-black hover:text-[#0033FF] flex items-center"
+                className="text-black hover:text-[#0033FF] flex items-center hover:animate-pulse"
               >
                 <span>Contact</span>
 
@@ -147,20 +152,13 @@ const Navbar = () => {
                 className="text-[20px]"
               />
               <button
-                className="text-black text-[40px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="text-black text-[40px] focus:outline-none"
                 onClick={toggleMenu}
               >
                 {isMenuOpen ? <AiOutlineClose /> : <GiHamburgerMenu />}
               </button>
             </div>
-            <div
-              className={`hidden md:flex md:items-center md:gap-[10px]`}
-              // style={{
-              //   display: isMenuOpen ? "none" : "flex",
-              //   alignItems: "center",
-              //   gap: "10px",
-              // }}
-            >
+            <div className={`hidden md:flex md:items-center md:gap-[10px]`}>
               <div className="flex items-center gap-5">
                 <BiSearch onClick={() => setInputShow((p) => !p)} />
                 {inputShow ? (
@@ -183,21 +181,6 @@ const Navbar = () => {
           </div>
         </div>
         {/* Mobile menu */}
-
-        {inputShowMobile ? (
-          <>
-            <div className="bg-white absolute md:hidden top-[100%] w-[98%] flex items-center border-b border-gray-500 shadow-lg">
-              <BiSearch onClick={() => setInputShowMobile((p) => !p)} />
-              <input
-                type="text"
-                className="px-4 py-2 rounded-md focus:outline-none w-full"
-                placeholder="Search"
-              />
-            </div>
-          </>
-        ) : (
-          ""
-        )}
       </nav>
     </>
   );

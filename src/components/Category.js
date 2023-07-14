@@ -23,9 +23,9 @@ function Category() {
           <div className="md:w-[60%] w-[100%] flex flex-col items-start justify-between gap-[30px]">
             <div className="text-[24px]">Category</div>
             <div className="md:leading-8 leading-2 w-full break-all">
-              <span> Agency Lead Generation|Consulting|Ecourse|</span>
-              <span>Events|Featured|Health|Landing Pages|</span>
-              <span> LeadGeneration|Medical|Webinar|WordPress</span>
+              <span> Agency Lead Generation | Consulting | Ecourse |</span>
+              <span> Events | Featured | Health | Landing Pages |</span>
+              <span> LeadGeneration | Medical | Webinar | WordPress</span>
             </div>
             <div className="items-center gap-[10px] text-[12px] hidden md:flex">
               <div>DESKTOP VIEW</div>

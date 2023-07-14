@@ -5,8 +5,8 @@ const Hamburgur = ({ isMenuOpen }) => {
   return (
     <div>
       {isMenuOpen ? (
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 absolute top-[15%] w-full bg-white">
-          <div className="bg-white flex items-center border-2 border-gray-500 mb-10">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 fixed top-[11%] w-full bg-white">
+          <div className="bg-white flex items-center border-2 border-gray-500 mb-10 p-1">
             <BiSearch />
             <input
               type="text"

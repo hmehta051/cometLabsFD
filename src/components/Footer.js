@@ -9,7 +9,11 @@ import {
 } from "react-icons/ai";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 const Footer = () => {
-  const [dropDown, setDropDown] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleDropDown = (index) => {
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
   return (
     <div className="w-[96%] m-auto mb-5">
       <div className="w-full">
@@ -41,23 +45,25 @@ const Footer = () => {
             <div
               key={index}
               className="flex items-start justify-between w-[100%] flex-col"
-              onClick={() => setDropDown((p) => !p)}
+              onClick={() => toggleDropDown(index)}
             >
               <div className="flex items-center justify-between w-full">
                 <div className="text-[22px]">{elem.title}</div>
                 <div>
-                  {dropDown ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
+                  {activeIndex === index ? (
+                    <MdKeyboardArrowUp />
+                  ) : (
+                    <MdKeyboardArrowDown />
+                  )}
                 </div>
               </div>
               <div>
-                {dropDown ? (
+                {activeIndex === index && (
                   <div className="flex flex-col gap-5 text-gray-500 mt-5">
-                    {elem.content.map((el, idx) => {
-                      return <div key={idx}>{el}</div>;
-                    })}
+                    {elem.content.map((el, idx) => (
+                      <div key={idx}>{el}</div>
+                    ))}
                   </div>
-                ) : (
-                  ""
                 )}
               </div>
             </div>
@@ -71,21 +77,21 @@ const Footer = () => {
           <div>Privacy Policy</div>
           <div>Terms and Service</div>
           <div className="flex items-center justify-between gap-2">
-            <AiFillTwitterCircle className="text-[30px] hover:bg-[#0033FF]" />
-            <AiFillLinkedin className="text-[30px] hover:bg-[#0033FF]" />
-            <AiFillGoogleCircle className="text-[30px] hover:bg-[#0033FF]" />
-            <AiFillInstagram className="text-[30px] hover:bg-[#0033FF]" />
-            <AiFillYoutube className="text-[30px] hover:bg-[#0033FF]" />
+            <AiFillTwitterCircle className="text-[30px] hover:text-[#0033FF]" />
+            <AiFillLinkedin className="text-[30px] hover:text-[#0033FF]" />
+            <AiFillGoogleCircle className="text-[30px] hover:text-[#0033FF]" />
+            <AiFillInstagram className="text-[30px] hover:text-[#0033FF]" />
+            <AiFillYoutube className="text-[30px] hover:text-[#0033FF]" />
           </div>
         </div>
       </div>
       <div className="md:hidden flex flex-col items-center justify-between mt-[20%] mb-[8%] gap-[20px] w-[90%] m-auto">
         <div className="flex items-center justify-between gap-2">
-          <AiFillTwitterCircle className="text-[30px] hover:bg-[#0033FF]" />
-          <AiFillLinkedin className="text-[30px] hover:bg-[#0033FF]" />
-          <AiFillGoogleCircle className="text-[30px] hover:bg-[#0033FF]" />
-          <AiFillInstagram className="text-[30px] hover:bg-[#0033FF]" />
-          <AiFillYoutube className="text-[30px] hover:bg-[#0033FF]" />
+          <AiFillTwitterCircle className="text-[30px] hover:text-[#0033FF]" />
+          <AiFillLinkedin className="text-[30px] hover:text-[#0033FF]" />
+          <AiFillGoogleCircle className="text-[30px] hover:text-[#0033FF]" />
+          <AiFillInstagram className="text-[30px] hover:text-[#0033FF]" />
+          <AiFillYoutube className="text-[30px] hover:text-[#0033FF]" />
         </div>
         <div>© 2010-2023 Unbounce. All rights reserved.</div>
         <div className="flex items-center justify-between gap-5 mt-[10px]">

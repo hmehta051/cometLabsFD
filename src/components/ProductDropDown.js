@@ -3,10 +3,7 @@ import { ProductData } from "../utils/DropDownData";
 import { AiFillStar } from "react-icons/ai";
 const ProductDropDown = () => {
   return (
-    <div
-      className="w-[90%] m-auto h-[450px] 
-    absolute bg-white shadow-lg top-[11%] z-10 flex items-center justify-between left-[5%]"
-    >
+    <div className="w-[90%] m-auto h-[450px] fixed bg-white shadow-lg top-[11%] z-20 flex items-center justify-between left-[5%]">
       <div className="w-[33.3%] h-full flex flex-col items-start justify-between p-5">
         {ProductData.filter((_, idx) => idx < 3).map((elem, index) => {
           return (
